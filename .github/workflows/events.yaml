@@ -2,9 +2,9 @@ name: Repository Events
 on: 
   push:
   pull_request:
-    type: [opened, assigned, reopened]
+    types: [opened, assigned, reopened]
   issues:
-    type: [opened]
+    types: [opened]
 
 jobs:
   checkout-test:

@@ -1,0 +1,9 @@
+name: Repository dispatch
+on:
+  repository_dispatch:
+
+jobs:
+  external-repo-trigger:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "I was triggered from POSTMAN"
