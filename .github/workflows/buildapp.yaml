@@ -1,0 +1,27 @@
+name: Java Assignment1 - Rajkumar
+
+on:
+  # push:
+  #   branches:
+  #     - 'feature/rajkumar-assignments'
+  workflow_dispatch:
+  # pull_request: 
+  #   branches:
+  #     - 'feature/rajkumar-assignments'
+  #   paths-ignore: 
+  #     - dotnet-app/**
+  #     - 'README.md'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Java version
+        uses: actions/setup-java@v1
+        with:
+          java-version: '11'
+
+      - name: Build with Maven
+        run: mvn -f ./pom.xml clean install
