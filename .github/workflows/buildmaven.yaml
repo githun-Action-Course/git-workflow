@@ -1,4 +1,4 @@
-name: New deployement
+name: checkdeployement
 on: [push]
 
 jobs:
@@ -16,5 +16,5 @@ jobs:
           java-version: '11.0.0'
           architecture: x64
     
-      - run: java -cp HelloWorldApp
+      - run: java -cp helloworldapp HelloWorldApp
       - run: ls -a
