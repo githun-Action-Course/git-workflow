@@ -1,4 +1,4 @@
-name: java app deployement
+name: New deployement
 on: [push]
 
 jobs:
@@ -15,4 +15,4 @@ jobs:
           java-version: '11.0.0'
           architecture: x64
     
-      - run: java -cp java HelloWorldApp
+      - run: java -cp java ./helloworldapp/HelloWorldApp
