@@ -3,6 +3,7 @@ on: [push]
 
 env:
   WF_LEVEL_ENV: Available to all jobs
+  IAM_ENV_VAR: cool
 
 jobs:
   env-vars-and-context:
@@ -25,3 +26,15 @@ jobs:
           echo $STEP_LEVEL_ENV
           echo $WF_LEVEL_ENV
           echo $JOB_LEVEL_ENV
+  job2:
+    runs-on: ubuntu-latest
+    needs: env-vars-and-context
+    env:
+      JOB2_ENV_VAR: hehe
+    steps:
+      - name: universal var
+        run: |
+          echo $IAM_ENV_VAR
+          echo '${{env.IAM_ENV_VAR}}'
+          echo $JOB2_ENV_VAR
+          echo '${{env.JOB2_ENV_VAR}}'
