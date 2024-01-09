@@ -4,6 +4,7 @@ on: [push]
 env:
   WF_LEVEL_ENV: Available to all jobs
   IAM_ENV_VAR: cool
+run-name: Iam running @ '${{github.actor}}'
 
 jobs:
   env-vars-and-context:
