@@ -1,13 +1,13 @@
-name: checkdeployement
+name : Scenario-1 
 on: [push]
-
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest  
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-java@v4
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Set up JDK
+        uses: actions/setup-java@v2
         with:
-          distribution: 'adopt-hotspot'
-          java-version: '11'
-      - run: java -cp HelloWorldApp
+          distribution: 'adopt'
+          java-version: '11' 
