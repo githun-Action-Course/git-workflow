@@ -1,14 +1,10 @@
-name: Java Maven Build & Publish Artifact
-
+name: Assignment-1 varsha
 on:
-  push:
-    branches: [ "main" ]
   pull_request:
-    branches: [ "main" ]
-
+    branches:
+      - feature/test
 jobs:
-  build_test:
-
+  build-test:
     runs-on: ubuntu-latest
 
     steps:
@@ -21,11 +17,9 @@ jobs:
         cache: maven
     - name: Build with Maven
       run: mvn -B package --file pom.xml
-
-   
   publish-job:
     runs-on: ubuntu-latest
-    needs: build_test
+    needs: build-test       #dependant job
     steps:
     - uses: actions/checkout@v3
     - uses: actions/setup-java@v3
