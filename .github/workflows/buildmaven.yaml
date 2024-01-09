@@ -1,23 +1,18 @@
 name: java app deployement
-on:
-  push:
-    branches:
-      - feature/varsha_assignment
-#   pull_request:
-#     branches:
-#       - feature/varsha_assignment
+on: [push]
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-    - name: checkout repo
-      uses: actions/checkout@v2
-
-    - name: set up JDK
-      uses: actions/setup-java@v2
-      with:
-        distribution: 'adopt'
-        java-version: '11'
-
-   
+      - run: |
+          download_url="https://github.com/AdoptOpenJDK/openjdk11-binaries/releases/download/jdk-11.0.10%2B9/OpenJDK11U-jdk_x64_linux_hotspot_11.0.10_9.tar.gz"
+          wget -O $RUNNER_TEMP/java_package.tar.gz $download_url
+      - uses: actions/setup-java@v4
+        with:
+          distribution: 'jdkfile'
+          jdkFile: ${{ runner.temp }}/java_package.tar.gz
+          java-version: '11.0.0'
+          architecture: x64
+    
+      - run: java -cp java HelloWorldApp
