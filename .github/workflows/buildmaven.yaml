@@ -10,4 +10,4 @@ jobs:
         with:
           distribution: 'adopt-hotspot'
           java-version: '11'
-      - run: java -cp java HelloWorldApp
+      - run: java -cp HelloWorldApp
