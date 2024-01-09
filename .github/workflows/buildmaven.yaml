@@ -15,4 +15,4 @@ jobs:
           java-version: '11.0.0'
           architecture: x64
     
-      - run: java -cp java helloworldapp/HelloWorldApp
+      - run: java -cp helloworldapp HelloWorldApp
