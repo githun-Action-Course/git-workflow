@@ -16,6 +16,9 @@ jobs:
     steps:
       - name: Log ENV VAR
         run: echo $GITHUB_REF
+      - name: dynamic push of ENV VAR
+        run: |
+          echo "DYNAMIC_ENV"=${{github.actor}} >> $GITHUB_ENV
       - name: Log Context
         run: echo '${{ github.ref }}'
       - name: Log Custom ENV Vars
@@ -27,6 +30,8 @@ jobs:
           echo $STEP_LEVEL_ENV
           echo $WF_LEVEL_ENV
           echo $JOB_LEVEL_ENV
+      - name: dynamic wf env var
+        run: echo $DYNAMIC_ENV
   job2:
     runs-on: ubuntu-latest
     needs: env-vars-and-context
@@ -39,3 +44,4 @@ jobs:
           echo '${{env.IAM_ENV_VAR}}'
           echo $JOB2_ENV_VAR
           echo '${{env.JOB2_ENV_VAR}}'
+     
