@@ -8,10 +8,11 @@ jobs:
       - name: Test
         run: |
           DELIMITER=12
-          echo "ENV_var<<$DELIMITER" >> "$GITHUB_ENV"
+          echo "ENV_VAR<<$DELIMITER" >> "$GITHUB_ENV"
           echo "Here is a joke: " >> "$GITHUB_ENV"
+          echo "" >> "$GITHUB_ENV"
           echo "$DELIMITER" >> "$GITHUB_ENV"
-          echo "Yo" $ENV_var
+          echo "Yo" $ENV_VAR
 
       - name: Multiline ENV Var
         run: |
