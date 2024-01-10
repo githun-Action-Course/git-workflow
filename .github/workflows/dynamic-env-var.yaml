@@ -24,6 +24,8 @@ jobs:
           echo "$DELIMITER" >> "$GITHUB_ENV"
       - name: joke
         run: echo $RANDOM_JOKE
+      - name: joke 2
+        run: echo $ENV_VAR
 
 
       
