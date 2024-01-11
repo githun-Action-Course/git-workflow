@@ -2,8 +2,10 @@ name: Calling Reusable Workflows
 on:
   workflow_dispatch:
     inputs:
-      name:
-        description: "This is a caller wf"
+        name:
+          description: "Caller of Reusable WF"
+          type: string
+          default: "assignment 2 "
 jobs:
   calling-a-reusable-wf:
     uses: ./.github/workflows/reusable.yaml
