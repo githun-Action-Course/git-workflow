@@ -1,0 +1,47 @@
+name: Environment Variables
+on: [push]
+
+env:
+  WF_LEVEL_ENV: Available to all jobs
+  IAM_ENV_VAR: cool
+run-name: Iam running @ '${{github.actor}}'
+
+jobs:
+  env-vars-and-context:
+    runs-on: ubuntu-latest
+    # if: $GITHUB_REF == 'refs/heads/main' DONT DO THIS
+    if: github.ref == 'refs/heads/main'
+    env:
+      JOB_LEVEL_ENV: Available to all steps in env-vars-and-context job
+    steps:
+      - name: Log ENV VAR
+        run: echo $GITHUB_REF
+      - name: dynamic push of ENV VAR
+        run: |
+          echo "DYNAMIC_ENV"=${{github.actor}} >> $GITHUB_ENV
+      - name: Log Context
+        run: echo '${{ github.ref }}'
+      - name: Log Custom ENV Vars
+        env:
+          STEP_LEVEL_ENV: Available to only this step
+          WF_LEVEL_ENV: Overriden in step
+        run: |
+          echo '${{ env.STEP_LEVEL_ENV }}'
+          echo $STEP_LEVEL_ENV
+          echo $WF_LEVEL_ENV
+          echo $JOB_LEVEL_ENV
+      - name: dynamic wf env var
+        run: echo $DYNAMIC_ENV
+  job2:
+    runs-on: ubuntu-latest
+    needs: env-vars-and-context
+    env:
+      JOB2_ENV_VAR: hehe
+    steps:
+      - name: universal var
+        run: |
+          echo $IAM_ENV_VAR
+          echo '${{env.IAM_ENV_VAR}}'
+          echo $JOB2_ENV_VAR
+          echo '${{env.JOB2_ENV_VAR}}'
+     

@@ -1,0 +1,31 @@
+name: dynamic env var
+on: [push]
+
+jobs:
+  display-multiline:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Test
+        run: |
+          DELIMITER=12
+          echo "ENV_VAR<<$DELIMITER" >> $GITHUB_ENV
+          echo "Here is a joke: " >> $GITHUB_ENV
+          echo "" >> $GITHUB_ENV
+          echo "$DELIMITER" >> $GITHUB_ENV
+          echo "Yo" $ENV_VAR
+
+      - name: Multiline ENV Var
+        run: |
+          DELIMITER=$(dd if=/dev/urandom bs=15 count=1 status=none | base64)
+          echo "RANDOM_JOKE<<$DELIMITER" >> "$GITHUB_ENV"
+          echo "Here is a joke: " >> "$GITHUB_ENV"
+          curl -s https://icanhazdadjoke.com/ >> "$GITHUB_ENV"
+          echo "" >> "$GITHUB_ENV"
+          echo "$DELIMITER" >> "$GITHUB_ENV"
+      - name: joke
+        run: echo $RANDOM_JOKE
+      - name: joke 2
+        run: echo $ENV_VAR
+
+
+      
